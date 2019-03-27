@@ -5,3 +5,10 @@
 /.project
 /.vscode
 /.idea
+**/*.crt
+**/*.csr
+**/*.key
+**/*.chain
+docker/certificates/intermediate1
+docker/certificates/root
+docker-compose-local.yml
