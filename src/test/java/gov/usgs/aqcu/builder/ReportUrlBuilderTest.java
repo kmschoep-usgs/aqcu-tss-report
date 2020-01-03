@@ -53,8 +53,11 @@ public class ReportUrlBuilderTest {
 
 	@Test
 	public void emptyParamsTest() {
-		String expectedUrl = aqcuWebserviceUrl + "/service/reports/?&primaryTimeseriesIdentifier=&station=";
-		String url = reportUrlBuilderService.buildAqcuReportUrl("", "", new ReportRequestParameters(), "");
+		ReportRequestParameters params = new ReportRequestParameters();
+		params.setStartDate(LocalDate.parse("2017-01-01"));
+		params.setEndDate(LocalDate.parse("2017-02-01"));
+		String expectedUrl = aqcuWebserviceUrl + "/service/reports/?startDate=2017-01-01&endDate=2017-02-01&primaryTimeseriesIdentifier=&station=";
+		String url = reportUrlBuilderService.buildAqcuReportUrl("", "", params, "");
 		assertEquals(0, expectedUrl.compareTo(url));
 	}
 
