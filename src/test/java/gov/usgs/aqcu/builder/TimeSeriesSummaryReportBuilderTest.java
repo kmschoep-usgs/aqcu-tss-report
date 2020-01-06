@@ -4,6 +4,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.any;
 
@@ -175,7 +176,7 @@ public class TimeSeriesSummaryReportBuilderTest {
 			.willReturn(extCorrs);
 		given(locService.getByLocationIdentifier(metadata.getStationId()))
 			.willReturn(primaryLoc);
-		given(ratingService.getRawResponse(any(String.class), any(Double.class), any(Instant.class), any(Instant.class)))
+		given(ratingService.getRawResponse(any(String.class), eq(null), eq(null), eq(null)))
 			.willReturn(new RatingCurveListServiceResponse().setRatingCurves(ratingCurves));
 		given(ratingService.getAqcuFilteredRatingCurves(any(ArrayList.class), any(Instant.class), any(Instant.class)))
 			.willReturn(ratingCurves);
@@ -406,7 +407,7 @@ public class TimeSeriesSummaryReportBuilderTest {
 	@Test
 	@SuppressWarnings("unchecked")
 	public void getRatingCurvesTest() {
-		given(ratingService.getRawResponse(any(String.class), any(Double.class), any(Instant.class), any(Instant.class)))
+		given(ratingService.getRawResponse(any(String.class), eq(null), eq(null), eq(null)))
 			.willReturn(new RatingCurveListServiceResponse().setRatingCurves(ratingCurves));
 		given(ratingService.getAqcuFilteredRatingCurves(any(ArrayList.class), any(Instant.class), any(Instant.class)))
 			.willReturn(ratingCurves);
