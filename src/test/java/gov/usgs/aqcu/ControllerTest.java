@@ -61,7 +61,7 @@ public class ControllerTest {
 		given(reportBuilderService.buildReport(any(TimeSeriesSummaryRequestParameters.class), any(String.class)))
 			.willReturn(report);
 		ResponseEntity<?> result = controller.getReportRawData(new TimeSeriesSummaryRequestParameters());
-		assertEquals(gson.toJson(result.getBody()), gson.toJson(report));
+		assertEquals(result.getBody(), gson.toJson(report));
 		assertEquals(result.getStatusCode(), HttpStatus.OK);
 	}
 
