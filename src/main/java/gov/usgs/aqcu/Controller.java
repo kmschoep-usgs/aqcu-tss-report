@@ -47,9 +47,9 @@ public class Controller {
 	}
 	
 	@GetMapping(value="/rawData", produces={MediaType.APPLICATION_JSON_VALUE})
-	public ResponseEntity<TimeSeriesSummaryReport> getReportRawData(@Validated TimeSeriesSummaryRequestParameters requestParameters) throws Exception {
+	public ResponseEntity<String> getReportRawData(@Validated TimeSeriesSummaryRequestParameters requestParameters) throws Exception {
 		TimeSeriesSummaryReport report = reportBuilderService.buildReport(requestParameters, getRequestingUser());
-		return new ResponseEntity<TimeSeriesSummaryReport>(report, new HttpHeaders(), HttpStatus.OK);
+		return new ResponseEntity<String>(gson.toJson(report, TimeSeriesSummaryReport.class), new HttpHeaders(), HttpStatus.OK);
 	}
 
 	String getRequestingUser() {
